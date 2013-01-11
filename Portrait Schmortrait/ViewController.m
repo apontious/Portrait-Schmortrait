@@ -39,10 +39,18 @@
             // iOS 6
             
             // DELETE -- Doesn't work. Replace with ?
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            UIView *view = window.subviews[0];
-            [view removeFromSuperview];
-            [window addSubview:view];
+			  // This is a terrible, terrible hack, but I can't find another technique to force the orientation to change on iOS 6. I apologize to any future developers that have to deal with the headaches that this causes.
+			  UIViewController *vc = [[UIViewController alloc] init];
+
+			  [self presentViewController:vc animated:NO completion:^{
+
+				  [self dismissViewControllerAnimated:NO completion:^{
+
+
+				  }];
+				  
+			  }];
+			  
         } else {
             // iOS 5
 
